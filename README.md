@@ -168,6 +168,11 @@ Budget
 -	Lunchbox Fund, 2024. 2024 Annual Report [online] Available at: < https://cdn.prod.website-files.com/5dcafdbe4d247f4aa384ee99/68ded0b86e8042ab45408dcb_Lunchbox%20Fund%202024%20Annual%20Report.pdf >
 -	Lunchbox Fund, 2025. 2025 Annual Report [online] Available at: < https://cdn.prod.website-files.com/5dcafdbe4d247f4aa384ee99/6a0fc1d223631697a33abe27_Lunchbox%20Fund%20Annual%20Report%202025.pdf >
 
+Media coverage and fundraising initiatives
+-	Bizcommunity, 2016. Shoprite Group ready for World Food Day [online], 6 October. Available at: < https://www.bizcommunity.com/Article/196/348/151879.html > [Accessed 02 November 2026]
+-	Discovery Limited, 2014. Saray Khumalo and Sibusiso Vilane safe following avalanche [online], 24 April. Available at: < https://www.mynewsdesk.com/za/discovery-holdings-ltd/pressreleases/saray-khumalo-and-sibusiso-vilane-safe-following-avalanche-987663 > [Accessed 02 November 2026]
+-	Mpumalanga News, 2014. Sibusiso escapes Everest avalanche [online], 25 April. Available at: < https://www.citizen.co.za/mpumalanga-news/news-headlines/2014/04/25/sibuaiao-vilane-en-saray-khumalo/ > [Accessed 02 November 2026]
+
 -	<img width="685" height="501" alt="image" src="https://github.com/user-attachments/assets/fe99ec7a-a9b4-4585-bbce-6c57691dff68" />
 
 <img width="807" height="782" alt="image" src="https://github.com/user-attachments/assets/dad1d911-378f-4b6f-bf5c-0a45e641af4f" />
