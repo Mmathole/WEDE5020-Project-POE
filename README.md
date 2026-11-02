@@ -102,7 +102,7 @@ ________________________________________________________________________________
 2.	Updated the page title to “About the Lunchbox Fund | Child Nutrition”.
 3.	Updated the header and navigation
 •	replaced the original logo with an optimized logo image.
-•	Change the main heading from an and <h1> element to a styled paragraph.
+•	Change the main heading from an < h1 >element to a styled paragraph.
 4.	Improved the study section heading to a meal can make room for learning.
 5.	Added an expendable history section
 •	Added separate sections for the organization's beginning in 2005 and its current work.
@@ -111,13 +111,6 @@ ________________________________________________________________________________
 7.	Reorganized the team information.
 8.	Made improvements to the changelog
 
-
-## Contact and enquiry form service
-
-When the site runs with its Node.js server, the contact and enquiry forms submit
-in the background to `/api/contact`. The server validates the fields again and
-sends the message using Nodemailer. GitHub Pages cannot run that server; its
-forms open a pre-filled email draft instead, as described below.
 
 
   ## Screenshot evidence
