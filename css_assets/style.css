@@ -1,16 +1,17 @@
-/* Start from the same box model and spacing baseline across browsers. */
+/* This file controls how the pages look and fit on different screens. */
+/* Give every browser the same starting spacing and box sizes. */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/*to make scrolling smooth*/
+/* Make page jumps scroll smoothly. */
 html {
     scroll-behavior: smooth;
 }
 
-/*Base website styles*/
+/* Set the main text style and background color for every page. */
 body {
     font-family: Arial, Arial, Helvetica, sans-serif;
     line-height: 16px;
@@ -18,7 +19,7 @@ body {
     background-color: #f4f8f3;
 }
 
-/*Make images responsive*/
+/* Keep pictures inside their boxes on small screens. */
 img {
     max-width: 100%;
     height: auto;
@@ -68,6 +69,7 @@ a:hover {
 /*==============================
             HEADER
     =============================*/
+    /* Put the logo and organization name together at the top. */
     .site-header {
         background-color: #145a32;
         color: #f4f8f3;
@@ -115,6 +117,7 @@ a:hover {
     /*---------------------------------------
     Navigation bar styles
     ---------------------------------------*/
+    /* Keep the page links together so visitors can move around the site. */
     .navbar {
         background-color: #0d4627;
         
@@ -157,6 +160,7 @@ a:hover {
     /*-------------------------
     Hero section styles
     -------------------------*/
+    /* Make the first large message stand out on the home page. */
     .hero {
         background: linear-gradient(rgba(13, 70, 39, 0.78), rgba(20, 90, 50, 0.78)),
                     url('../images/lunchbox-fund-school-meals-hero-optimized.jpg') center/cover no-repeat;
@@ -195,6 +199,7 @@ a:hover {
     /*-------------------------
     button styles
     -------------------------*/
+    /* Make links that look like buttons easy to see and click. */
     .btn {
         display: inline-block;
         background-color: #23844b;

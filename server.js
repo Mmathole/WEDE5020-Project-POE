@@ -12,6 +12,7 @@ const recipient = process.env.MAIL_TO || "info@thelunchboxfund.co.za";
 const maximumBodyBytes = 10 * 1024;
 const rateLimitWindowMs = 15 * 60 * 1000;
 const rateLimitMaximum = 5;
+const rateLimitAddressMaximum = 10000;
 const requestsByAddress = new Map();
 
 // Fail at startup instead of accepting messages that cannot be delivered.
@@ -96,7 +97,7 @@ const setSecurityHeaders = (response) => {
     response.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
     response.setHeader(
         "Content-Security-Policy",
-        "default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: https://*.tile.openstreetmap.org; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+        "default-src 'self'; script-src 'self' https://unpkg.com/leaflet@1.9.4/dist/leaflet.js; style-src 'self' 'unsafe-inline' https://unpkg.com/leaflet@1.9.4/dist/leaflet.css; img-src 'self' data: https://*.tile.openstreetmap.org https://unpkg.com/leaflet@1.9.4/dist/images/; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
     );
 };
 
@@ -239,14 +240,32 @@ const validateSubmission = (data) => {
 const isRateLimited = (address) => {
     const now = Date.now();
     const previous = requestsByAddress.get(address);
-    if (!previous || now - previous.startedAt >= rateLimitWindowMs) {
-        requestsByAddress.set(address, { startedAt: now, count: 1 });
-        return false;
+    if (previous && now - previous.startedAt < rateLimitWindowMs) {
+        // Let each address send only a few messages during one time window.
+        previous.count += 1;
+        return previous.count > rateLimitMaximum;
     }
 
-    // Allow a small burst, then reject requests until this address's window expires.
-    previous.count += 1;
-    return previous.count > rateLimitMaximum;
+    if (previous) {
+        requestsByAddress.delete(address);
+    }
+
+    // Clean up expired addresses only when the table is full, so normal requests stay quick.
+    if (requestsByAddress.size >= rateLimitAddressMaximum) {
+        for (const [knownAddress, entry] of requestsByAddress) {
+            if (now - entry.startedAt >= rateLimitWindowMs) {
+                requestsByAddress.delete(knownAddress);
+            }
+        }
+
+        // Stop adding new addresses if a large number of active visitors fill the safety limit.
+        if (requestsByAddress.size >= rateLimitAddressMaximum) {
+            return true;
+        }
+    }
+
+    requestsByAddress.set(address, { startedAt: now, count: 1 });
+    return false;
 };
 
 const sendSubmission = async (submission, email) => {
@@ -346,6 +365,12 @@ const server = createServer(async (request, response) => {
         response.end("Not found");
     }
 });
+
+// Close slow or endless requests before they can tie up the server for too long.
+server.headersTimeout = 10_000;
+server.requestTimeout = 30_000;
+server.keepAliveTimeout = 5_000;
+server.maxRequestsPerSocket = 100;
 
 server.listen(port, "0.0.0.0", () => {
     console.log(`Lunchbox Fund website listening on port ${port}.`);

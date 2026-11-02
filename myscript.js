@@ -1,3 +1,4 @@
+// This file adds the site's interactive features after the page has loaded.
 const aboutPage = document.querySelector(".about-page");
 
 // ABOUT PAGE: scroll reveals, accessible tabs, the regional map, and the photo lightbox.
@@ -300,7 +301,7 @@ if (programsGrid && programControls && programResults) {
     sortSelect.addEventListener("change", renderPrograms);
 }
 
-// CONTACT AND ENQUIRY FORMS: validate locally, send JSON, and report the server's reply.
+// FORMS: check answers in the browser, then let the server check them again before sending.
 const ajaxForms = document.querySelectorAll("[data-ajax-form]");
 
 // The phone input accepts familiar punctuation, but must contain 7 to 15 actual digits.
