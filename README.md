@@ -58,104 +58,7 @@ Budget
 -	Lunchbox Fund, 2024. 2024 Annual Report [online] Available at: < https://cdn.prod.website-files.com/5dcafdbe4d247f4aa384ee99/68ded0b86e8042ab45408dcb_Lunchbox%20Fund%202024%20Annual%20Report.pdf >
 -	Lunchbox Fund, 2025. 2025 Annual Report [online] Available at: < https://cdn.prod.website-files.com/5dcafdbe4d247f4aa384ee99/6a0fc1d223631697a33abe27_Lunchbox%20Fund%20Annual%20Report%202025.pdf >
 
-## Changelog
-
-- add more comments to HTML files
-- improve file and folder structure
-- delete unnecessary and unused file (New Folder, js_assets)
-- create folder named: Private (Proposals)
-- move proposals, sitemap, content research and sourcing files to Private (Proposals) folder
-- complete navigation menu
-- add content in donate.html
-
-## Contact and enquiry form service
-
-When the site runs with its Node.js server, the contact and enquiry forms submit
-in the background to `/api/contact`. The server validates the fields again and
-sends the message using Nodemailer. GitHub Pages cannot run that server; its
-forms open a pre-filled email draft instead, as described below.
-
-### Local setup
-
-1. Install Node.js 20 or newer.
-2. From the project folder, run `npm install`.
-3. Configure the mail settings in the terminal before starting the server. In
-   PowerShell, use your mail provider's values:
-
-   ```powershell
-   $env:SMTP_HOST = "smtp.example.org"
-   $env:SMTP_PORT = "587"
-   $env:SMTP_USER = "your-smtp-user"
-   $env:SMTP_PASS = "your-smtp-password"
-   $env:MAIL_FROM = "website@example.org"
-   $env:SITE_ORIGIN = "http://localhost:3000"
-   npm start
-   ```
-
-   `SMTP_SECURE` is optional; use `"true"` if your provider requires implicit
-   TLS. `MAIL_TO` optionally overrides the recipient address. Keep real
-   credentials out of source control.
-4. Open `http://localhost:3000`. Visit `/health` to check that the server is
-   responding.
-
-Production hosting that sends form emails directly must run this Node.js server
-(or an equivalent serverless endpoint) and set `SITE_ORIGIN` to the exact public
-site origin. Configure SMTP credentials through the hosting provider's
-secret/environment-variable settings; successful delivery also depends on the
-SMTP provider allowing the configured sender.
-
-## Publish the static website with GitHub Pages
-
-The workflow in `.github/workflows/pages.yml` publishes the public pages when
-changes are pushed to `main`. It copies only the HTML pages, stylesheet,
-browser script, crawler files, and optimized images into the Pages artifact.
-Project documents, proposals, source server code, and mail configuration are
-not published.
-
-1. Push the repository to GitHub.
-2. In the repository, open **Settings → Pages** and select **GitHub Actions**
-   as the build and deployment source.
-3. Push a commit to `main`, or run **Deploy static website to GitHub Pages**
-   from the **Actions** tab. Wait for the workflow's build and deploy jobs to
-   complete.
-4. Open `https://mmathole.github.io/WEDE5020-Project-Part-2/` and check its
-   pages, `robots.txt`, and `sitemap.xml`. The repository owner or a custom
-   domain change requires updating the canonical links, sitemap, and robots
-   sitemap address.
-
-GitHub Pages is static hosting; it cannot run `server.js` or Nodemailer. On the
-Pages version, submitting a contact or enquiry form opens a pre-filled draft in
-the visitor's email application. The visitor must review and send that draft.
-For server-side email submission, use the local Node.js service or deploy an
-authorized backend separately.
-
-The Pages workflow publishes from an explicit file allowlist, which is the main
-protection against accidentally exposing private project materials. The
-included `robots.txt` gives crawlers guidance but is not access control. On a
-`github.io` project site, search engines may only honor robots rules served at
-the host root; use your own domain or its root Pages site if you need a
-site-specific robots policy. GitHub Pages also does not let this repository set
-HTTP security headers, so the public pages use a restrictive Content Security
-Policy meta tag where supported.
-
-  ## Screenshot evidence
-  ### Desktop
-  <img width="1887" height="942" alt="image" src="https://github.com/user-attachments/assets/f09fe075-a2ff-4c2a-a1da-daf1fd1f0d88" />
-  <img width="1902" height="942" alt="image" src="https://github.com/user-attachments/assets/62426f28-52f9-46cf-b0a2-f2a785090161" />
-  <img width="1891" height="686" alt="image" src="https://github.com/user-attachments/assets/8101575c-c726-4a9d-8d70-3b6331421404" />
-
-  ### Mobile
-  <img width="739" height="1600" alt="mobile 1" src="https://github.com/user-attachments/assets/9bc1d0da-a917-41b9-85e7-8d07c410667b" />
-  <img width="739" height="1600" alt="mobile 4" src="https://github.com/user-attachments/assets/4b36ae10-3985-40f1-8fac-b4515db7af6a" />
-  <img width="739" height="1600" alt="mobile 3" src="https://github.com/user-attachments/assets/86aecb61-b77b-42a9-8add-8a4e0f46a6f1" />
-
-  
-
-
-
-
-
-
+_____________________________________________________________________________________________________________________________________
 ### References (updated)
   Organization overview & Website goals and objectives
 -	The Lunchbox Fund [online]  Available at: < https://www.thelunchboxfund.org/ > [Accessed 08 August 2026]
@@ -168,10 +71,6 @@ Budget
 -	Lunchbox Fund, 2024. 2024 Annual Report [online] Available at: < https://cdn.prod.website-files.com/5dcafdbe4d247f4aa384ee99/68ded0b86e8042ab45408dcb_Lunchbox%20Fund%202024%20Annual%20Report.pdf >
 -	Lunchbox Fund, 2025. 2025 Annual Report [online] Available at: < https://cdn.prod.website-files.com/5dcafdbe4d247f4aa384ee99/6a0fc1d223631697a33abe27_Lunchbox%20Fund%20Annual%20Report%202025.pdf >
 
-Media coverage and fundraising initiatives
--	Bizcommunity, 2016. Shoprite Group ready for World Food Day [online], 6 October. Available at: < https://www.bizcommunity.com/Article/196/348/151879.html > [Accessed 02 November 2026]
--	Discovery Limited, 2014. Saray Khumalo and Sibusiso Vilane safe following avalanche [online], 24 April. Available at: < https://www.mynewsdesk.com/za/discovery-holdings-ltd/pressreleases/saray-khumalo-and-sibusiso-vilane-safe-following-avalanche-987663 > [Accessed 02 November 2026]
--	Mpumalanga News, 2014. Sibusiso escapes Everest avalanche [online], 25 April. Available at: < https://www.citizen.co.za/mpumalanga-news/news-headlines/2014/04/25/sibuaiao-vilane-en-saray-khumalo/ > [Accessed 02 November 2026]
 
 -	<img width="685" height="501" alt="image" src="https://github.com/user-attachments/assets/fe99ec7a-a9b4-4585-bbce-6c57691dff68" />
 
@@ -182,6 +81,62 @@ Media coverage and fundraising initiatives
 -	Figure 1: The Lunchbox Fund logo drawing
 
 Source: Image generated by Google Gemini on a dark forest green background using the prompt: "make the background match this [green] color" based on an original generation for "a logo of a non profit org called The Lunchbox Fund, logo must contain hands holding and a lunchbox" (Google, 2026).
+
+
+
+## Changelog
+
+- add more comments to HTML files
+- improve file and folder structure
+- delete unnecessary and unused file (New Folder, js_assets)
+- create folder named: Private (Proposals)
+- move proposals, sitemap, content research and sourcing files to Private (Proposals) folder
+- complete navigation menu
+- add content in donate.html
+_______________________________________________________________________________________
+## Updated Changelog
+1.	Improved the HTML document structure
+•	Added more comments throughout the code to explain the purpose of different sections.
+•	Improved the organization of the HTML elements and session structure.
+•	Edit the about page class to the body element to allow page-specific styling.
+2.	Updated the page title to “About the Lunchbox Fund | Child Nutrition”.
+3.	Updated the header and navigation
+•	replaced the original logo with an optimized logo image.
+•	Change the main heading from an and <h1> element to a styled paragraph.
+4.	Improved the study section heading to a meal can make room for learning.
+5.	Added an expendable history section
+•	Added separate sections for the organization's beginning in 2005 and its current work.
+•	Allowed visitors to expand and collapse the history information.
+6.	Added a photo Gallery
+7.	Reorganized the team information.
+8.	Made improvements to the changelog
+
+
+## Contact and enquiry form service
+
+When the site runs with its Node.js server, the contact and enquiry forms submit
+in the background to `/api/contact`. The server validates the fields again and
+sends the message using Nodemailer. GitHub Pages cannot run that server; its
+forms open a pre-filled email draft instead, as described below.
+
+
+  ## Screenshot evidence
+  ### Desktop
+  <img width="1887" height="942" alt="image" src="https://github.com/user-attachments/assets/f09fe075-a2ff-4c2a-a1da-daf1fd1f0d88" />
+  <img width="1902" height="942" alt="image" src="https://github.com/user-attachments/assets/62426f28-52f9-46cf-b0a2-f2a785090161" />
+  <img width="1891" height="686" alt="image" src="https://github.com/user-attachments/assets/8101575c-c726-4a9d-8d70-3b6331421404" />
+
+  ### Mobile
+  <img width="739" height="1600" alt="mobile 1" src="https://github.com/user-attachments/assets/9bc1d0da-a917-41b9-85e7-8d07c410667b" />
+  <img width="739" height="1600" alt="mobile 4" src="https://github.com/user-attachments/assets/4b36ae10-3985-40f1-8fac-b4515db7af6a" />
+  <img width="739" height="1600" alt="mobile 3" src="https://github.com/user-attachments/assets/86aecb61-b77b-42a9-8add-8a4e0f46a6f1" />
+
+
+### Backlinks
+Media coverage and fundraising initiatives
+-	Bizcommunity, 2016. Shoprite Group ready for World Food Day [online], 6 October. Available at: < https://www.bizcommunity.com/Article/196/348/151879.html > [Accessed 02 November 2026]
+-	Discovery Limited, 2014. Saray Khumalo and Sibusiso Vilane safe following avalanche [online], 24 April. Available at: < https://www.mynewsdesk.com/za/discovery-holdings-ltd/pressreleases/saray-khumalo-and-sibusiso-vilane-safe-following-avalanche-987663 > [Accessed 02 November 2026]
+-	Mpumalanga News, 2014. Sibusiso escapes Everest avalanche [online], 25 April. Available at: < https://www.citizen.co.za/mpumalanga-news/news-headlines/2014/04/25/sibuaiao-vilane-en-saray-khumalo/ > [Accessed 02 November 2026]
 
 
 	
