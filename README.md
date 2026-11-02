@@ -136,8 +136,9 @@ This changelog summarizes the main website, security, and documentation improvem
 
 ### Backlinks
 
-Several external websites help promote The Lunchbox Fund by mentioning the organization and linking it to its website. For example, Bizcommunity published an article about Shoprite's World Food Day initiative that included a link to The Lunchbox Fund. Discovery Limited also published an article about a charity campaign by Saray Khumalo and Sibusiso Vilane, which linked directly to the organization's donation page. The citizen published a similar article containing a link to the donation page. These examples demonstrate how path links from news and business websites can increase awareness, direct visitors to the organization's website and improve its online visibility.
+Several external websites help promote The Lunchbox Fund by mentioning the organization and linking it to its website. For example, Bizcommunity published an article about Shoprite's World Food Day initiative that included a link to The Lunchbox Fund. Discovery Limited also published an article about a charity campaign by Saray Khumalo and Sibusiso Vilane, which linked directly to the organization's donation page. The citizen published a similar article containing a link to the donation page. These examples demonstrate how path links from news and business websites can increase awareness, direct visitors to the organization's website and improve its online visibility
 
+# These are examples of some of the Backlinks
 
 Media coverage and fundraising initiatives
 -	Bizcommunity, 2016. Shoprite Group ready for World Food Day [online], 6 October. Available at: < https://www.bizcommunity.com/Article/196/348/151879.html > [Accessed 02 November 2026]
