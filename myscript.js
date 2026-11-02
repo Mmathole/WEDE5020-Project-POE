@@ -381,6 +381,89 @@ ajaxForms.forEach((form) => {
             general: "Tell us what you would like to know and the team can point you in the right direction."
         };
 
+        const quickAnswerGroup = form.querySelector("[data-quick-answers]");
+        const quickQuestion = form.querySelector("[data-quick-question]");
+        const quickAnswer = form.querySelector("[data-quick-answer]");
+        const quickAnswers = {
+            program: [
+                {
+                    question: "What programs does The Lunchbox Fund run?",
+                    answer: "The programs are School Feeding, Community Outreach, and Advocacy & Awareness.",
+                    linkText: "Explore the programs",
+                    href: "programs.html"
+                },
+                {
+                    question: "Which countries does the organization serve?",
+                    answer: "The organization supports vulnerable schoolchildren in South Africa, Mozambique, and Lesotho.",
+                    linkText: "Read about the organization",
+                    href: "about.html"
+                }
+            ],
+            volunteer: [
+                {
+                    question: "How can I help?",
+                    answer: "You can volunteer your time and skills, raise funds, or spread awareness about child hunger and education.",
+                    linkText: "See ways to help",
+                    href: "programs.html"
+                },
+                {
+                    question: "Are volunteer roles and start dates available now?",
+                    answer: "Availability depends on current needs. The team can confirm which opportunities and start dates are available.",
+                    linkText: "Ask about volunteering",
+                    href: "contact.html"
+                }
+            ],
+            sponsor: [
+                {
+                    question: "What kinds of support can I offer?",
+                    answer: "The enquiry form lists financial sponsorship, food or supplies, and business partnerships as options.",
+                    linkText: "Explore partnership enquiries",
+                    href: "contact.html"
+                },
+                {
+                    question: "What donation amounts can I choose?",
+                    answer: "The donation page lists R50, R100, R250, R500, or another amount. The page collects a suggested amount; it does not process payment.",
+                    linkText: "View donation options",
+                    href: "donate.html"
+                }
+            ],
+            general: [
+                {
+                    question: "What is The Lunchbox Fund's mission?",
+                    answer: "Its mission is to help ensure hunger and food insecurity do not prevent children from learning.",
+                    linkText: "Read about the mission",
+                    href: "about.html"
+                },
+                {
+                    question: "When was The Lunchbox Fund founded?",
+                    answer: "The Lunchbox Fund was founded in 2005.",
+                    linkText: "Read about its history",
+                    href: "about.html"
+                },
+                {
+                    question: "How can I contact the team?",
+                    answer: "You can email info@thelunchboxfund.co.za or call +27 (0) 123 456 7899.",
+                    linkText: "See contact details",
+                    href: "contact.html"
+                }
+            ]
+        };
+
+        const updateQuickAnswer = () => {
+            const selectedAnswer = quickAnswers[enquiryType.value]
+                ?.find((item) => item.question === quickQuestion.value);
+            quickAnswer.replaceChildren();
+            quickAnswer.hidden = !selectedAnswer;
+
+            if (selectedAnswer) {
+                quickAnswer.append(`${selectedAnswer.answer} `);
+                const link = document.createElement("a");
+                link.href = selectedAnswer.href;
+                link.textContent = selectedAnswer.linkText;
+                quickAnswer.append(link, ".");
+            }
+        };
+
         // Show only fields that match the selected enquiry topic. Disabled hidden fields
         // are omitted from submission, and the relevant dropdown becomes required.
         const updateEnquiryFields = () => {
@@ -396,9 +479,17 @@ ajaxForms.forEach((form) => {
 
             response.textContent = enquiryResponses[selectedTopic]
                 || "Choose a topic to see what the team can help you with.";
+
+            quickAnswerGroup.hidden = !quickAnswers[selectedTopic];
+            quickQuestion.replaceChildren(new Option("Choose a question", ""));
+            (quickAnswers[selectedTopic] || []).forEach((item) => {
+                quickQuestion.add(new Option(item.question, item.question));
+            });
+            updateQuickAnswer();
         };
 
         enquiryType.addEventListener("change", updateEnquiryFields);
+        quickQuestion.addEventListener("change", updateQuickAnswer);
         // Apply the initial hidden/required states before the visitor touches the form.
         updateEnquiryFields();
     }
@@ -442,8 +533,13 @@ ajaxForms.forEach((form) => {
             const emailDraft = `mailto:info@thelunchboxfund.co.za?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
             status.className = "form-status";
-            status.textContent = "Your email app should open with a draft. Review it and press Send there; your message has not been sent yet.";
-            window.location.href = emailDraft;
+            status.replaceChildren(
+                "Your message has not been sent yet. Open the draft in your email app, review it, and press Send: "
+            );
+            const draftLink = document.createElement("a");
+            draftLink.href = emailDraft;
+            draftLink.textContent = "Open email draft";
+            status.append(draftLink);
             return;
         }
 

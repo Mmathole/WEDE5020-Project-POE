@@ -49,7 +49,7 @@
                     <p>
                         Program costs and volunteer or sponsorship availability depend on current needs. The team can provide the latest details after reviewing your enquiry.
                     </p>
-                    <p>Your enquiry is sent to the team so they can reply with current information. Please don’t include sensitive personal information.</p>
+                    <p>Use the form to prepare an enquiry for the team. On GitHub Pages, you’ll review and send it from your email app. Please don’t include sensitive personal information.</p>
 
                     <div class="contact-grid enquiry-contact">
                         <div class="contact-item">
@@ -99,6 +99,14 @@
                                 <option value="sponsor">Sponsorship or partnership</option>
                                 <option value="general">Something else</option>
                             </select>
+                        </div>
+
+                        <div class="form-group" data-quick-answers hidden>
+                            <label for="quick-question">Looking for a quick answer? Choose a question</label>
+                            <select id="quick-question" data-quick-question>
+                                <option value="">Choose a question</option>
+                            </select>
+                            <p class="form-response" data-quick-answer role="status" aria-live="polite" hidden></p>
                         </div>
 
                         <div class="form-group">
@@ -168,7 +176,7 @@
                         <button type="submit" class="btn">Send Enquiry</button>
                         <p class="form-status" data-email-status role="status" aria-live="polite"></p>
                     </form>
-                    <p class="form-note">Your enquiry is sent to the organization for a reply. On GitHub Pages, your email app opens a draft that you must review and send. Please don’t include sensitive personal information.</p>
+                    <p class="form-note">GitHub Pages cannot send enquiries directly. After selecting “Open email draft,” review and send the enquiry in your email app. Please don’t include sensitive personal information.</p>
                 </div>
             </section>
         </div>
